@@ -24,6 +24,13 @@ pipeline {
         sh '.jenkins-venv/bin/pytest --cov=. --cov-report=term --cov-report=xml'
     }
 }
+stage('Publish Coverage') {
+    steps {
+        recordCoverage(
+            tools: [[parser: 'COBERTURA', pattern: 'coverage.xml']]
+        )
+    }
+}
 
     }
 
