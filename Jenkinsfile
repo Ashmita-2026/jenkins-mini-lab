@@ -31,6 +31,11 @@ stage('Publish Coverage') {
         )
     }
 }
+stage('Lint') {
+    steps {
+        sh '.jenkins-venv/bin/ruff check app.py test_app.py'
+    }
+}
 
     }
 
