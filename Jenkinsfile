@@ -36,6 +36,17 @@ stage('Lint') {
         sh '.jenkins-venv/bin/ruff check app.py test_app.py'
     }
 }
+stage('SonarQube Analysis') {
+    steps {
+        script {
+            def scannerHome = tool 'sonar-scanner'
+
+            withSonarQubeEnv('local-sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
+}
 
     }
 
