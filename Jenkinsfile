@@ -19,11 +19,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                sh '.jenkins-venv/bin/pytest'
-            }
-        }
+        stage('Test & Coverage') {
+    steps {
+        sh '.jenkins-venv/bin/pytest --cov=. --cov-report=term --cov-report=xml'
+    }
+}
 
     }
 
